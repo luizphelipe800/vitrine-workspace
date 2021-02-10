@@ -1,0 +1,6 @@
+[submodule "webapp"]
+	path = webapp
+	url = git@github.com:luizphelipe800/vitrine-webapp.git
+[submodule "api"]
+	path = api
+	url = git@github.com:luizphelipe800/vitrine-api.git

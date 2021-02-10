@@ -1,0 +1,40 @@
+version: '3'
+
+services: 
+  api:
+    container_name: vitrine-api
+    image: node:14-alpine
+    ports: 
+      - 3000:3000
+    working_dir: /app
+    volumes: 
+      - ./api:/app
+    networks: 
+      - mail-network
+      - base-network
+    command: sh -c 'yarn && yarn start'
+  webapp:
+    container_name: vitrine-webapp
+    image: node:14-alpine
+    ports: 
+      - 80:3000
+    working_dir: /app
+    volumes: 
+      - ./webapp:/app
+    networks: 
+      - base-network
+    tty: true
+    stdin_open: true
+    command: sh -c 'yarn && yarn start'
+  mailhog:
+    container_name: vitrine-mailhog
+    image: mailhog/mailhog
+    ports: 
+      - 1025:1025
+      - 8025:8025
+    networks: 
+      - mail-network
+
+networks: 
+  mail-network:
+  base-network:
